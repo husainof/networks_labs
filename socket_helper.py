@@ -14,19 +14,23 @@ def update_list_servers(host):
 
     try:
 
-        sock.connect((host, port))
+        REAL_HOST = host.replace(
+            "http://", "").replace("https://", "").split("/")[0].split(":")[0]
 
-        request = "GET / HTTP/1.1\r\nHost:%s\r\n\r\n" % host
+        print(REAL_HOST)
+        sock.connect(("imc.ssau.ru/", port))
 
-        sock.send(request.encode())
+        sock.send(
+            b'GET / HTTP/1.1\r\nHost: imc.ssau.ru/\r\nConnection:close\r\n\r\n')
 
         response = sock.recv(4096)
 
-    except Exception:
+    except Exception as ex:
 
-        print("Failed")
+        print("Failed:" + str(ex))
 
     soup = BeautifulSoup(response, "html.parser")
+    print(soup.text)
 
     target_list.clear()
 

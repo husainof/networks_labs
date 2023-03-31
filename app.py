@@ -1,8 +1,9 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QListWidget, QWidget, QLineEdit, QMessageBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QListWidget, QWidget, QLineEdit, QMessageBox, QLabel
 
 
 import socket_helper
 
+from main import foundLinks, checkedLinks, btn_click
 
 import sys  # Только для доступа к аргументам командной строки
 
@@ -27,7 +28,10 @@ class Window(QMainWindow):
 
         self.listWidget = QListWidget()
 
+        self.checked_urls = QListWidget()
+
         vbox.addWidget(self.listWidget)
+        vbox.addWidget(self.checked_urls)
 
         self.setLayout(vbox)
 
@@ -40,8 +44,13 @@ class Window(QMainWindow):
         vbox.addWidget(button)
 
         self.le = QLineEdit(self)
+        self.le.setPlaceholderText("Введите проверяемый адрес")
+        self.le_num = QLineEdit(self)
+        self.le_num.setPlaceholderText(
+            "Введите количество страниц")
 
         vbox.addWidget(self.le)
+        vbox.addWidget(self.le_num)
 
         wid = QWidget(self)
 
@@ -52,9 +61,12 @@ class Window(QMainWindow):
     def click(self):
         self.listWidget.clear()
 
-        socket_helper.update_list_servers(self.le.text())
+        # socket_helper.update_list_servers(self.le.text())
+        btn_click()
+        self.listWidget.addItems(foundLinks)
+        self.checked_urls.addItems(checkedLinks)
 
-        self.listWidget.addItems(socket_helper.target_list)
+        self
 
 
 App = QApplication(sys.argv)

@@ -7,6 +7,8 @@ name = "pypi"
 beautifulsoup4 = "*"
 pyqt6 = "*"
 pyqt-tools = "*"
+requests = "*"
+tk = "*"
 
 [dev-packages]
 
