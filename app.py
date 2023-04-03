@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout,
 
 import socket_helper
 
-from main import foundLinks, checkedLinks, btn_click
+from main import getUrls
 
 import sys  # Только для доступа к аргументам командной строки
 
@@ -60,13 +60,15 @@ class Window(QMainWindow):
 
     def click(self):
         self.listWidget.clear()
+        self.checked_urls.clear()
 
         # socket_helper.update_list_servers(self.le.text())
-        btn_click()
+        checkedLinks, foundLinks = getUrls(self.le_num.text(), self.le.text())
+
         self.listWidget.addItems(foundLinks)
         self.checked_urls.addItems(checkedLinks)
-
-        self
+        print(foundLinks)
+        print(checkedLinks)
 
 
 App = QApplication(sys.argv)

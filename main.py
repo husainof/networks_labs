@@ -1,10 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as b
-from tkinter import *
-from tkinter.messagebox import showerror
 
-
-api = Tk()
 WebsiteName = ""
 Number = 0
 
@@ -12,27 +8,27 @@ foundLinks = []
 checkedLinks = []
 
 
-def btn_click():
+def getUrls(num, url):
     try:
         global Number
-        Number = int(NumberPages.get())
-        info1.delete(1.0, END)
-        info2.delete(1.0, END)
-        URL = UrlName.get()
+        Number = int(num)
+        
+        URL = url
         if("http://" not in URL):
             URL = "http://"+URL
         global linksForCheck
         global foundLinks
         global WebsiteName
         global checkedLinks
-        checkedLinks = []  # проверенные ссылки
-        foundLinks = []  # ссылки на сторонние сервера
-        linksForCheck = []  # ссылки, которые нужно проверить
+        checkedLinks = []  
+        foundLinks = [] 
+        linksForCheck = [] 
         WebsiteName = GetNameWebsite(URL)
         linksForCheck += [URL]
         Checklink()
     except:
-        showerror(title="Ошибка", message="Некорректные данные")
+        print("Некорректные данные")
+    return checkedLinks, foundLinks
 
 
 def Checklink():
@@ -73,9 +69,9 @@ def Checklink():
                             linksForCheck += [c]
                 checkedLinks += [currentUrl]
                 k += 1
-        OutputLinks()
     except:
-        showerror(title="Ошибка", message="При обработке данных произошла ошибка")
+        print("При обработке данных произошла ошибка")
+   
 
 
 def GetNameWebsite(url):
@@ -91,15 +87,6 @@ def GetNameWebsite(url):
     return url
 
 
-def OutputLinks():
-    if len(foundLinks) != 0:
-        for c in checkedLinks:
-            info2.insert(1.0, c+"\n\n")
-        info2.insert(1.0, "Количество проверенных страниц: " +
-                     str(len(checkedLinks))+"\n\n")
-        for c in foundLinks:
-            info1.insert(1.0, c+"\n\n")
-        info1.insert(1.0, "Список найденных серверов:\n\n")
 
 
 # api['bg'] = '#ffffff'
