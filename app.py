@@ -1,8 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QListWidget, QWidget, QLineEdit, QMessageBox, QLabel
 
 
-import socket_helper
-
 from main import getUrls
 
 import sys  # Только для доступа к аргументам командной строки
