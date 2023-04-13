@@ -20,10 +20,10 @@ def traverse(ftp, depth=0):
 def generate_tree(tree, n=0):
     for el in tree:
         if tree[el] is None:
-            print('    |' * n + '-' * 4 + el + '\n')
+            print('    |' * n + '-' * 4 + el + '\n'.rstrip('\n'))
 
         elif len(tree[el]):
-            print('    |' * n + '-' * 4 + el + '\\' + '\n')
+            print('    |' * n + '-' * 4 + el + '\\' + '\n'.rstrip('\n'))
             generate_tree(tree[el], n+1)
 
 
