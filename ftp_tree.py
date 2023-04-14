@@ -1,5 +1,7 @@
+#!/usr/bin/python3
+
+import argparse
 import ftplib
-import json
 import pprint
 
 
@@ -28,10 +30,17 @@ def generate_tree(tree, n=0):
 
 
 def main():
-    ftp = ftplib.FTP('91.222.128.11')
-    ftp.login('testftp_guest', '12345')
-    tree = traverse(ftp, 4)
-    generate_tree(tree)
+    parser = argparse.ArgumentParser(description='Print tree ftp directory')
+    parser.add_argument("-ip", default='91.222.128.11', help="set ip address", type=str)
+    parser.add_argument("-l", default='testftp_guest', help="set login", type=str)
+    parser.add_argument("-p", default='12345', help="set password", type=str)
+    parser.add_argument("-d", default=0, help="set depth", type=int)
+
+    args = parser.parse_args()
+    ftp = ftplib.FTP(args.ip)
+    ftp.login(args.l, args.p)
+    tree = traverse(ftp)
+    generate_tree(tree, args.d)
     # pprint.pprint(tree)
 
 
