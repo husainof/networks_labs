@@ -34,7 +34,7 @@ class EmailClient(QWidget):
 
         self.from_email_edit.setText('amatersu.oni@yandex.ru')
         self.to_email_edit.setText('amatersu.oni@yandex.ru')
-        self.password_edit.setText('rvoirwfktcgwfovn')
+        self.password_edit.setText('')
         self.server_edit.setText('smtp.yandex.ru')
         self.port_edit.setText('465')
         self.subject_edit.setText('')
@@ -112,7 +112,7 @@ class EmailClient(QWidget):
         # Очищаем поля формы
         self.from_email_edit.setText('amatersu.oni@yandex.ru')
         self.to_email_edit.setText('amatersu.oni@yandex.ru')
-        self.password_edit.setText('rvoirwfktcgwfovn')
+        self.password_edit.setText('')
         self.server_edit.setText('smtp.yandex.ru')
         self.port_edit.setText('465')
         self.subject_edit.setText('')
