@@ -128,6 +128,7 @@ class EmailClient(QWidget):
         self.subject_edit.setText('')
         self.message_edit.setText('')
         self.attachments_edit.clear()
+        self.attachmts.clear()
 
 
 if __name__ == '__main__':
